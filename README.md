@@ -1,22 +1,18 @@
----
+<h1 align="center"> Amazon USA Sales Analysis </h1>
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/0d7d4d2b-7269-4656-af04-271c58c7f6af" width="300">
+</p>
 
-# **Amazon USA Sales Analysis Project**
-
-### **Difficulty Level: Advanced**
-
----
 
 ## **Project Overview**
 
-I have worked on analyzing a dataset of over 20,000 sales records from an Amazon-like e-commerce platform. This project involves extensive querying of customer behavior, product performance, and sales trends using PostgreSQL. Through this project, I have tackled various SQL problems, including revenue analysis, customer segmentation, and inventory management.
+I analyzed a dataset of over 20,000 sales records from an Amazon-like e-commerce platform, focusing on customer behavior, product performance, and sales trends using PostgreSQL. The project included querying data to uncover insights into revenue generation, identifying key customer segments, and managing inventory based on demand trends. This involved solving business challenges like tracking seasonal sales patterns, optimizing inventory restocking strategies, and identifying high-value customers.
 
-The project also focuses on data cleaning, handling null values, and solving real-world business problems using structured queries.
+A major part of the work was dedicated to cleaning the dataset by handling missing values, ensuring data integrity, and developing structured queries to address business problems in real-world scenarios, similar to the challenges faced by Indian e-commerce platforms like Flipkart or BigBasket. 
 
-An ERD diagram is included to visually represent the database schema and relationships between tables.
+The ERD diagram created for this project visually represents the database schema, highlighting relationships between key tables such as customers, products, and transactions.
 
----
-
-![ERD Scratch](https://github.com/najirh/amazon_usa_project5/blob/main/erd2.png)
+![erd2](https://github.com/user-attachments/assets/7e7c2bff-642a-4ccc-a8b5-3064920a2f25)
 
 ## **Database Setup & Design**
 
@@ -723,28 +719,43 @@ call add_sales
 
 ---
 
----
-
 ## **Learning Outcomes**
 
-This project enabled me to:
-- Design and implement a normalized database schema.
-- Clean and preprocess real-world datasets for analysis.
-- Use advanced SQL techniques, including window functions, subqueries, and joins.
-- Conduct in-depth business analysis using SQL.
-- Optimize query performance and handle large datasets efficiently.
+This project enabled proficiency in several key areas:
 
----
+- **Database Design:** Successfully designed and implemented a normalized database schema to organize data efficiently and minimize redundancy.
+  
+- **Data Cleaning & Preprocessing:** Gained expertise in cleaning and preprocessing real-world datasets by managing null values, duplicates, and ensuring data quality for reliable analysis.
+
+- **Advanced SQL Techniques:** Applied advanced SQL techniques such as window functions, subqueries, CTEs, and complex joins to extract insights from the dataset and solve intricate business queries.
+
+- **Business Analysis with SQL:** Conducted in-depth analysis to address critical business needs, such as identifying revenue patterns, customer segmentation, and optimizing inventory management.
+
+- **Performance Optimization:** Developed skills in optimizing query performance, ensuring efficient handling of large datasets to deliver faster results and improve overall database efficiency.
 
 ## **Conclusion**
 
-This advanced SQL project successfully demonstrates my ability to solve real-world e-commerce problems using structured queries. From improving customer retention to optimizing inventory and logistics, the project provides valuable insights into operational challenges and solutions.
+This advanced SQL project effectively showcases the ability to solve real-world e-commerce challenges through structured queries. It offers valuable insights into key operational areas, including improving customer retention, optimizing inventory, and streamlining logistics. By addressing these business problems, the project highlights how data-driven solutions can enhance decision-making and operational efficiency.
 
-By completing this project, I have gained a deeper understanding of how SQL can be used to tackle complex data problems and drive business decision-making.
+Through this experience, a deeper understanding of SQL's capabilities in tackling complex data problems was gained, demonstrating how it serves as a powerful tool for driving strategic business decisions in e-commerce.
 
----
+
 
 ### **Entity Relationship Diagram (ERD)**
-![ERD](https://github.com/najirh/amazon_usa_project5/blob/main/erd.png)
+![erd](https://github.com/user-attachments/assets/ef0b55e0-cb9f-4843-b9ae-3eca4796fe6f)
 
----
+## Contact
+
+Author: [@Smit Rana](https://www.linkedin.com/in/smit98rana/) and [@Simran Chadda](https://www.linkedin.com/in/simran-chadda/)
+
+<p align="center">
+	<img src="https://user-images.githubusercontent.com/74038190/214644145-264f4759-7633-441e-9d67-d8dda9d50d26.gif" width="200">
+</p>
+
+<div align="center">
+  <a href="https://git.io/typing-svg">
+    <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&center=true&vCenter=true&random=true&width=435&lines=I+hope+this+work+serves+you+well!" alt="Typing SVG" />
+  </a>
+</div>
+
+<img src="https://user-images.githubusercontent.com/74038190/212284100-561aa473-3905-4a80-b561-0d28506553ee.gif" >
