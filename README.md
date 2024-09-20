@@ -1,4 +1,4 @@
-<h1 align="center"> Amazon USA Sales Analysis </h1>
+<h1 align="center"> E-commerce Sales Performance Analysis </h1>
 <p align="center">
   <img src="https://github.com/user-attachments/assets/0d7d4d2b-7269-4656-af04-271c58c7f6af" width="300">
 </p>
