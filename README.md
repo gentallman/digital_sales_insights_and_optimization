@@ -746,8 +746,7 @@ Through this experience, a deeper understanding of SQL's capabilities in tacklin
 
 ## Contact
 
-Author: [@Smit Rana](https://www.linkedin.com/in/smit98rana/) and [@Simran Chadda](https://www.linkedin.com/in/simran-chadda/)
-
+Author: [@Smit Rana](https://www.linkedin.com/in/smit98rana/) 
 <p align="center">
 	<img src="https://user-images.githubusercontent.com/74038190/214644145-264f4759-7633-441e-9d67-d8dda9d50d26.gif" width="200">
 </p>
