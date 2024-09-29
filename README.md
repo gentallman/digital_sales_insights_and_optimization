@@ -1,6 +1,6 @@
 <h1 align="center"> E-commerce Sales Performance Analysis </h1>
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/2edc6b97-01b3-4e95-9cee-36fb8dfee025" width="300">
+  <img src="https://github.com/user-attachments/assets/2edc6b97-01b3-4e95-9cee-36fb8dfee025" width="230">
 </p>
 
 
