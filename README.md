@@ -13,7 +13,7 @@ A major part of the work was dedicated to cleaning the dataset by handling missi
 
 The ERD diagram created for this project visually represents the database schema, highlighting relationships between key tables such as customers, products, and transactions.
 
-![erd2](https://github.com/user-attachments/assets/7e7c2bff-642a-4ccc-a8b5-3064920a2f25)
+![amazon_db](https://github.com/user-attachments/assets/c3f6d569-cca0-4205-a97b-56a230f2fcab)
 
 ## **Database Setup & Design**
 
@@ -743,7 +743,7 @@ Through this experience, a deeper understanding of SQL's capabilities in tacklin
 
 
 ### **Entity Relationship Diagram (ERD)**
-![erd](https://github.com/user-attachments/assets/ef0b55e0-cb9f-4843-b9ae-3eca4796fe6f)
+![amazon_db_erd](https://github.com/user-attachments/assets/0c47e095-0d0b-4b36-88a6-7414b8496e3d)
 
 ## Contact
 
