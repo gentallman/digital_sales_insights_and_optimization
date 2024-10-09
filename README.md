@@ -782,20 +782,6 @@ $$;
 call process_order_and_update_inventory (24001, 10 , 3, 24007, 38, 11);
 ```
 
-## **Learning Outcomes**
-
-This project enabled proficiency in several key areas:
-
-- **Database Design:** Successfully designed and implemented a normalized database schema to organize data efficiently and minimize redundancy.
-  
-- **Data Cleaning & Preprocessing:** Gained expertise in cleaning and preprocessing real-world datasets by managing null values, duplicates, and ensuring data quality for reliable analysis.
-
-- **Advanced SQL Techniques:** Applied advanced SQL techniques such as window functions, subqueries, CTEs, and complex joins to extract insights from the dataset and solve intricate business queries.
-
-- **Business Analysis with SQL:** Conducted in-depth analysis to address critical business needs, such as identifying revenue patterns, customer segmentation, and optimizing inventory management.
-
-- **Performance Optimization:** Developed skills in optimizing query performance, ensuring efficient handling of large datasets to deliver faster results and improve overall database efficiency.
-
 ### Learning Outcomes
 
 - **Joins**: Achieved mastery in using joins to efficiently retrieve data from multiple related tables.
