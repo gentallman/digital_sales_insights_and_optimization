@@ -5,13 +5,13 @@
 </p>
 
 
-## Introduction
+### Introduction
 
 In the fast-changing world of e-commerce, businesses are constantly looking for ways to refine their sales strategies, boost customer satisfaction, and enhance inventory management. This project centers on analyzing Amazon's e-commerce sales performance through a relational database model built in PostgreSQL. By employing advanced SQL queries, we seek to uncover valuable insights from various interconnected tables representing customers, sellers, orders, shipping, payments, products, categories, order items, and inventory.
 
 The analysis covers a wide range of performance metrics, including top-selling products, revenue by category, customer lifetime value (CLTV), and inventory stock alerts. By focusing on these essential elements, the project aims to deliver actionable insights that can assist stakeholders in making informed decisions to stimulate sales growth and improve operational efficiency.
 
-## Problem Statement
+### Problem Statement
 
 Although Amazon's e-commerce platform offers a vast amount of data, extracting actionable insights necessitates advanced data analysis techniques. This project addresses several key challenges:
 
@@ -28,7 +28,7 @@ Although Amazon's e-commerce platform offers a vast amount of data, extracting a
 Through a series of complex SQL queries, this project aims to deliver comprehensive insights into these challenges, empowering stakeholders to make data-driven decisions that improve the overall performance of Amazon's e-commerce platform."
 
 
-## Objectives
+### Objectives
 1. **Create a Comprehensive PostgreSQL Database Schema**: Design a robust database schema that effectively represents the diverse entities and their relationships within Amazon's e-commerce ecosystem.
 
 2. **Execute Advanced SQL Queries**: Implement intricate SQL queries to extract actionable insights regarding sales performance, customer behavior, inventory management, shipping efficiency, and seller performance.
@@ -794,7 +794,7 @@ This project enabled proficiency in several key areas:
 
 - **Performance Optimization:** Developed skills in optimizing query performance, ensuring efficient handling of large datasets to deliver faster results and improve overall database efficiency.
 
-## Learning Outcomes
+### Learning Outcomes
 
 - **Joins**: Achieved mastery in using joins to efficiently retrieve data from multiple related tables.
 
