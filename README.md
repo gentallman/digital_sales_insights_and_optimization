@@ -4,12 +4,12 @@
   <img src="https://github.com/user-attachments/assets/2edc6b97-01b3-4e95-9cee-36fb8dfee025" width="230">
 </p>
 
-
+<div align="justify"> 
 ### Introduction
 
-In the fast-changing world of e-commerce, businesses are constantly looking for ways to refine their sales strategies, boost customer satisfaction, and enhance inventory management. This project centers on analyzing Amazon's e-commerce sales performance through a relational database model built in PostgreSQL. By employing advanced SQL queries, we seek to uncover valuable insights from various interconnected tables representing customers, sellers, orders, shipping, payments, products, categories, order items, and inventory.
+<p align="justify"> In the fast-changing world of e-commerce, businesses are constantly looking for ways to refine their sales strategies, boost customer satisfaction, and enhance inventory management. This project centers on analyzing Amazon's e-commerce sales performance through a relational database model built in PostgreSQL. By employing advanced SQL queries, we seek to uncover valuable insights from various interconnected tables representing customers, sellers, orders, shipping, payments, products, categories, order items, and inventory. </p>
 
-The analysis covers a wide range of performance metrics, including top-selling products, revenue by category, customer lifetime value (CLTV), and inventory stock alerts. By focusing on these essential elements, the project aims to deliver actionable insights that can assist stakeholders in making informed decisions to stimulate sales growth and improve operational efficiency.
+<p align="justify"> The analysis covers a wide range of performance metrics, including top-selling products, revenue by category, customer lifetime value (CLTV), and inventory stock alerts. By focusing on these essential elements, the project aims to deliver actionable insights that can assist stakeholders in making informed decisions to stimulate sales growth and improve operational efficiency. </p>
 
 ### Problem Statement
 
@@ -25,7 +25,7 @@ Although Amazon's e-commerce platform offers a vast amount of data, extracting a
   
 - **Seller Performance Evaluation**: Evaluating seller performance based on total sales and order success rates to identify top performers and areas needing improvement.
 
-Through a series of complex SQL queries, this project aims to deliver comprehensive insights into these challenges, empowering stakeholders to make data-driven decisions that improve the overall performance of Amazon's e-commerce platform."
+Through a series of complex SQL queries, this project aims to deliver comprehensive insights into these challenges, empowering stakeholders to make data-driven decisions that improve the overall performance of Amazon's e-commerce platform.
 
 
 ### Objectives
@@ -354,9 +354,9 @@ GROUP BY
     c.customer_id, c.first_name, c.last_name;
 ```
 
-8. Inventory Stock Alerts
-Query products with stock levels below a certain threshold (e.g., less than 10 units).
-__Challenge__ :  Include last restock date and warehouse information.
+__8. Inventory Stock Alerts__ <br>
+Query products with stock levels below a certain threshold (e.g., less than 10 units). <br>
+__Challenge__ :  Include last restock date and warehouse information. <br>
 
 ```sql
 SELECT 
@@ -823,6 +823,7 @@ The learning outcomes achieved throughout this process—ranging from mastering 
 
 Moving forward, the insights gained from this project can serve as a foundation for continuous improvement, enabling stakeholders to make informed, data-driven decisions that drive growth and enhance customer satisfaction in an increasingly competitive landscape.
 
+</div>
 ## Contact
 
 Author: [@Smit Rana](https://www.linkedin.com/in/smit98rana/) 
