@@ -38,7 +38,8 @@ Through a series of complex SQL queries, this project aims to deliver comprehens
 
 
 ### Entity Relationship Diagram
-![amazon_db (1)](https://github.com/user-attachments/assets/16531b16-e104-42b3-bb87-b4ff4ff4a4fd)
+![amazon_db](https://github.com/user-attachments/assets/1f1f9a2e-2099-41f3-8407-1053a744ede9)
+
 
 ### Database Setup & Design
 
