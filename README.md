@@ -535,7 +535,30 @@ ORDER BY
 LIMIT 10;
 ```
 
-14. Inactive Sellers
+14. Orders Pending Shipment
+Find orders that have been paid but are still pending shipment.
+Challenge: Include order details, payment date, and customer information.
+
+```sql
+SELECT
+    c.customer_id AS "Customer ID",
+	o.order_id AS "Order ID",
+    CONCAT(c.first_name, ' ', c.last_name) AS "Name",
+    c.state AS "State",
+    o.order_date AS "Order Date",
+    o.order_status AS "Order Status"
+FROM 
+    customers AS c
+JOIN 
+    orders AS o ON c.customer_id = o.customer_id
+JOIN 
+    payments AS p ON o.order_id = p.order_id
+WHERE 
+    o.order_status = 'Inprogress' 
+    AND p.payment_status = 'Payment Successed';
+```
+
+15. Inactive Sellers
 Identify sellers who haven’t made any sales in the last 6 months.
 Challenge: Show the last sale date and total sales from those sellers.
 
@@ -558,7 +581,7 @@ WHERE
     AND p.payment_status = 'Payment Successed';
 ```
 
-15. IDENTITY customers into returning or new
+16. Ienditfy customers into returning or new
 if the customer has done more than 5 return categorize them as returning otherwise new
 Challenge: List customers id, name, total orders, total returns
 
@@ -589,197 +612,188 @@ GROUP BY
     "Seller ID", "Name";
 ```
 
-16. Top 5 Customers by Orders in Each State
+17. Top 5 Customers by Orders in Each State
 Identify the top 5 customers with the highest number of orders for each state.
 Challenge: Include the number of orders and total sales for each customer.
+
 ```sql
 SELECT
-	"Name",
-	"Total Orders",
-	"Total Returns",
-	CASE 
-		WHEN "Total Returns" > 5 THEN 'Returning' 
-		ELSE 'New' 
-	END AS "Category"
-FROM (
-	SELECT
-		CONCAT(c.first_name, ' ', c.last_name) AS "Name",
-		COUNT(o.order_id) AS "Total Orders",
-		SUM(CASE 
-			WHEN o.order_status = 'Returned' THEN 1 
-			ELSE 0  
-		END) AS "Total Returns"
-	FROM 
-		customers AS c
-	JOIN 
-		orders AS o ON o.customer_id = c.customer_id
-	GROUP BY 
-		c.first_name, c.last_name
-) AS subquery
-ORDER BY  
-	"Total Returns" DESC;
+	CONCAT(c.first_name, ' ', c.last_name) AS "Name",
+	c.state AS "State",
+	COUNT(o.order_id) AS "No. of Orders",
+	ROUND(SUM(oi.total_sales)::numeric, 2) AS "Total Sales",
+	DENSE_RANK() OVER(PARTITION BY c.state ORDER BY COUNT(o.order_id) DESC) AS "Rank"
+FROM 
+	orders AS o
+JOIN 
+	customers AS c ON c.customer_id = o.customer_id
+JOIN 
+	order_items AS oi ON o.order_id = oi.order_id
+GROUP BY 
+	c.first_name, c.last_name, c.state
+ORDER BY 
+	"State", "Rank";
 ```
 
-17. Revenue by Shipping Provider
+18. Revenue by Shipping Provider
 Calculate the total revenue handled by each shipping provider.
 Challenge: Include the total number of orders handled and the average delivery time for each provider.
 
 ```sql
 SELECT 
-	s.shipping_providers,
-	COUNT(o.order_id) as order_handled,
-	SUM(oi.total_sale) as total_sale,
-	COALESCE(AVG(s.return_date - s.shipping_date), 0) as average_days
-FROM orders as o
+    s.shipping_providers AS "Shipment Providers",
+    COUNT(o.order_id) AS "Orders Handled",
+    ROUND(SUM(oi.total_sales)::numeric, 2) AS "Total Sales",
+	-- Delivery date should fall somewhere between the shipping date and return date
+    -- (s.shipping_date + (s.return_date - s.shipping_date)) AS "Delivery Date", 
+    COALESCE(ROUND(AVG((s.shipping_date + (s.return_date - s.shipping_date) / 2) - s.shipping_date)::numeric, 2), 0) AS "Avg Delivery Time"
+FROM 
+    order_items AS oi
 JOIN 
-order_items as oi
-ON oi.order_id = o.order_id
+    orders AS o ON oi.order_id = o.order_id
 JOIN 
-shippings as s
-ON 
-s.order_id = o.order_id
-GROUP BY 1
+    shipping AS s ON s.order_id = o.order_id
+GROUP BY 
+    s.shipping_providers;
 ```
 
-18. Top 10 product with highest decreasing revenue ratio compare to last year(2022) and current_year(2023)
+19. Top 10 product with highest decreasing revenue ratio compare to last year(2022) and current_year(2023)
 Challenge: Return product_id, product_name, category_name, 2022 revenue and 2023 revenue decrease ratio at end Round the result
 Note: Decrease ratio = cr-ls/ls* 100 (cs = current_year ls=last_year)
 
 ```sql
-WITH last_year_sale
-as
-(
-SELECT 
-	p.product_id,
-	p.product_name,
-	SUM(oi.total_sale) as revenue
-FROM orders as o
-JOIN 
-order_items as oi
-ON oi.order_id = o.order_id
-JOIN 
-products as p
-ON 
-p.product_id = oi.product_id
-WHERE EXTRACT(YEAR FROM o.order_date) = 2022
-GROUP BY 1, 2
+WITH last_year_sale AS (
+    SELECT 
+        p.product_id,
+        p.product_name,
+        ROUND(SUM(oi.total_sales)::numeric, 2) AS revenue
+    FROM
+        products AS p
+    JOIN 
+        order_items AS oi ON p.product_id = oi.product_id
+    JOIN 
+        orders AS o ON oi.order_id = o.order_id
+    WHERE 
+        EXTRACT(YEAR FROM o.order_date) = 2022
+    GROUP BY 
+        p.product_id, p.product_name
 ),
-
-current_year_sale
-AS
-(
-SELECT 
-	p.product_id,
-	p.product_name,
-	SUM(oi.total_sale) as revenue
-FROM orders as o
-JOIN 
-order_items as oi
-ON oi.order_id = o.order_id
-JOIN 
-products as p
-ON 
-p.product_id = oi.product_id
-WHERE EXTRACT(YEAR FROM o.order_date) = 2023
-GROUP BY 1, 2
+current_year_sale AS (
+    SELECT 
+        p.product_id,
+        p.product_name,
+        ROUND(SUM(oi.total_sales)::numeric, 2) AS revenue
+    FROM
+        products AS p
+    JOIN 
+        order_items AS oi ON p.product_id = oi.product_id
+    JOIN 
+        orders AS o ON oi.order_id = o.order_id
+    WHERE 
+        EXTRACT(YEAR FROM o.order_date) = 2023
+    GROUP BY 
+        p.product_id, p.product_name
 )
 
 SELECT
-	cs.product_id,
-	ls.revenue as last_year_revenue,
-	cs.revenue as current_year_revenue,
-	ls.revenue - cs.revenue as rev_diff,
-	ROUND((cs.revenue - ls.revenue)::numeric/ls.revenue::numeric * 100, 2) as reveneue_dec_ratio
-FROM last_year_sale as ls
-JOIN
-current_year_sale as cs
-ON ls.product_id = cs.product_id
+    cs.product_id AS "Product ID",
+    cs.product_name AS "Name",
+    ls.revenue AS "Last Year Revenue",
+    cs.revenue AS "Current Year Revenue",
+    (ls.revenue - cs.revenue) AS "Revenue Difference",
+    ROUND(((ls.revenue - cs.revenue) / ls.revenue) * 100, 2) AS "Revenue Decrease Ratio"
+FROM 
+    last_year_sale AS ls
+JOIN 
+    current_year_sale AS cs ON ls.product_id = cs.product_id
 WHERE 
-	ls.revenue > cs.revenue
-ORDER BY 5 DESC
-LIMIT 10
+    ls.revenue > cs.revenue 
+ORDER BY 
+    "Revenue Decrease Ratio" DESC
+LIMIT 10;
 ```
 
-
-19. Final Task: Stored Procedure
+29. Stored Procedure
 Create a stored procedure that, when a product is sold, performs the following actions:
 Inserts a new sales record into the orders and order_items tables.
 Updates the inventory table to reduce the stock based on the product and quantity purchased.
 The procedure should ensure that the stock is adjusted immediately after recording the sale.
 
 ```SQL
-CREATE OR REPLACE PROCEDURE add_sales
+CREATE OR REPLACE PROCEDURE process_order_and_update_inventory 
 (
-p_order_id INT,
-p_customer_id INT,
-p_seller_id INT,
-p_order_item_id INT,
-p_product_id INT,
-p_quantity INT
+    p_order_id INT,         -- Order ID provided for the new order
+    p_customer_id INT,      -- Customer ID associated with the order
+    p_seller_id INT,        -- Seller ID associated with the order
+    p_order_item_id INT,    -- Unique Order Item ID for each product in the order
+    p_product_id INT,       -- Product ID of the item being ordered
+    p_quantity INT          -- Quantity of the product being ordered
 )
 LANGUAGE plpgsql
 AS $$
 
 DECLARE 
--- all variable
-v_count INT;
-v_price FLOAT;
-v_product VARCHAR(50);
+    -- Variables to store product details and stock check result
+    v_count INT;           
+    v_price FLOAT;          
+    v_product VARCHAR(50);  
 
 BEGIN
--- Fetching product name and price based p id entered
-	SELECT 
-		price, product_name
-		INTO
-		v_price, v_product
-	FROM products
-	WHERE product_id = p_product_id;
-	
--- checking stock and product availability in inventory	
-	SELECT 
-		COUNT(*) 
-		INTO
-		v_count
-	FROM inventory
-	WHERE 
-		product_id = p_product_id
-		AND 
-		stock >= p_quantity;
-		
-	IF v_count > 0 THEN
-	-- add into orders and order_items table
-	-- update inventory
-		INSERT INTO orders(order_id, order_date, customer_id, seller_id)
-		VALUES
-		(p_order_id, CURRENT_DATE, p_customer_id, p_seller_id);
+    -- Retrieve product name and price based on the provided product ID
+    SELECT 
+        price, 
+        product_name
+    INTO
+        v_price, 
+        v_product
+    FROM products
+    WHERE product_id = p_product_id;
+    
+    -- Check inventory for product availability with the required quantity
+    SELECT 
+        COUNT(*) 
+    INTO
+        v_count
+    FROM inventory
+    WHERE 
+        product_id = p_product_id   -- Check for the specified product
+        AND stock >= p_quantity;    -- Ensure available stock is equal to or greater than the ordered quantity
+        
+    -- If sufficient stock is available, proceed with order and update inventory
+    IF v_count > 0 THEN
+        
+		-- Insert the new order details into the 'orders' table
+        INSERT INTO orders(order_id, order_date, customer_id, seller_id)
+        VALUES
+        (p_order_id, CURRENT_DATE, p_customer_id, p_seller_id);
 
-		-- adding into order list
-		INSERT INTO order_items(order_item_id, order_id, product_id, quantity, price_per_unit, total_sale)
-		VALUES
-		(p_order_item_id, p_order_id, p_product_id, p_quantity, v_price, v_price*p_quantity);
+        -- Insert product details into the 'order_items' table, calculating total sales
+        INSERT INTO order_items(order_item_id, order_id, product_id, quantity, price_per_unit, total_sales)
+        VALUES
+        (p_order_item_id, p_order_id, p_product_id, p_quantity, v_price, v_price * p_quantity);
 
-		--updating inventory
-		UPDATE inventory
-		SET stock = stock - p_quantity
-		WHERE product_id = p_product_id;
-		
-		RAISE NOTICE 'Thank you product: % sale has been added also inventory stock updates',v_product; 
-	ELSE
-		RAISE NOTICE 'Thank you for for your info the product: % is not available', v_product;
-	END IF;
+        -- Update the 'inventory' table to reduce stock by the ordered quantity
+        UPDATE inventory
+        SET stock = stock - p_quantity
+        WHERE product_id = p_product_id;
+        
+        -- Display a success message indicating the product sale has been recorded and stock updated
+        RAISE NOTICE 'Thank you, the product % sale has been added and inventory stock has been updated.', v_product; 
+    ELSE
+        -- If stock is insufficient, display a message indicating the product is unavailable
+        RAISE NOTICE 'Unfortunately, the product: % is not available', v_product;
+    END IF;
+
 END;
-$$
+$$;
 ```
 
 
 
-**Testing Store Procedure**
-call add_sales
-(
-25005, 2, 5, 25004, 1, 14
-);
-
----
+```sql
+-- Testing Store Procedure
+call process_order_and_update_inventory (24001, 10 , 3, 24007, 38, 11);
+```
 
 ## **Learning Outcomes**
 
