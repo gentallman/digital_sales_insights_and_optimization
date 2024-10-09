@@ -5,6 +5,7 @@
 </p>
 
 <div align="justify"> 
+	
 ### Introduction
 
 <p align="justify"> In the fast-changing world of e-commerce, businesses are constantly looking for ways to refine their sales strategies, boost customer satisfaction, and enhance inventory management. This project centers on analyzing Amazon's e-commerce sales performance through a relational database model built in PostgreSQL. By employing advanced SQL queries, we seek to uncover valuable insights from various interconnected tables representing customers, sellers, orders, shipping, payments, products, categories, order items, and inventory. </p>
