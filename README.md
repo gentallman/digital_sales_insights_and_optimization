@@ -775,12 +775,18 @@ END;
 $$;
 ```
 
-
+### Before 
+![before](https://github.com/user-attachments/assets/6a8dfe47-049d-433c-828e-2d8bfeb99dfa)
 
 ```sql
 -- Testing Store Procedure
 call process_order_and_update_inventory (24001, 10 , 3, 24007, 38, 11);
 ```
+
+### After
+
+![after](https://github.com/user-attachments/assets/6e936929-fadc-4853-92ae-3c0570478121)
+
 
 ### Learning Outcomes
 
